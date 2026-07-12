@@ -1,0 +1,9 @@
+# Source and development files — not published to LM Studio Hub
+src/
+scripts/
+tsconfig.json
+README.dev.md
+node_modules/
+*.lock
+*-lock.json
+.gitignore

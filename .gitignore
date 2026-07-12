@@ -1,0 +1,6 @@
+# Git — keep TypeScript source tracked; dist is compiled output for the plugin runtime
+node_modules/
+.lmstudio/production.js
+release/
+*.lock
+*-lock.json
