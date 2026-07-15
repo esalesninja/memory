@@ -8,7 +8,13 @@ Persistent memories for LM Studio chats. Save facts globally or per-conversation
 
 ## Install
 
-Install from [LM Studio Hub](https://lmstudio.ai/) or run:
+Install from [LM Studio Hub](https://lmstudio.ai/) (eas)
+
+```
+lms get esalesninja/memory
+```
+
+or clone the project:
 
 ```bash
 lms clone esalesninja/memory
@@ -42,17 +48,23 @@ When you share identity or standing facts, the model saves them to `global.md` u
 
 ![Saving global memories — AI Name and User name written to global.md](Remember_Global.png)
 
+https://raw.githubusercontent.com/esalesninja/memory/main/Remember_Global.png
+
 ### Save a chat-specific memory
 
 When you ask for a persona or context for **this chat only**, the model uses `write_memory` and stores it in the current chat's memory file.
 
 ![Saving a chat-specific persona with write_memory](Remember_Chat.png)
 
+https://raw.githubusercontent.com/esalesninja/memory/main/Remember_Chat.png
+
 ### Retrieve memories across chats
 
 Global memories are auto-injected into every prompt. Open a different chat and the model still knows your names — no need to repeat yourself.
 
 ![Retrieving global memories in a different chat](Remember_Retrieve.png)
+
+https://raw.githubusercontent.com/esalesninja/memory/main/Remember_Retrieve.png
 
 ---
 

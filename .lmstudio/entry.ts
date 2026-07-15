@@ -2,6 +2,7 @@ import { LMStudioClient, type PluginContext } from "@lmstudio/sdk";
 
 declare var process: any;
 
+// We receive runtime information in the environment variables.
 const clientIdentifier = process.env.LMS_PLUGIN_CLIENT_IDENTIFIER;
 const clientPasskey = process.env.LMS_PLUGIN_CLIENT_PASSKEY;
 const baseUrl = process.env.LMS_PLUGIN_BASE_URL;

@@ -89,20 +89,23 @@ Builds `dist/`, bundles `.lmstudio/production.js` to import compiled JS, and ins
 
 ## Publishing (production-only)
 
-**Source code is not published.** Only the bundled production artifact and user-facing files are pushed to LM Studio Hub.
+**Plugin source is not published.** The Hub artifact ships compiled `dist/` JavaScript plus a one-line `src/index.ts` shim so LM Studio can bundle the plugin at install time.
+
+### Why not `.lmstudio/production.js`?
+
+`lms push` excludes dot-path files (paths starting with `.`), so `.lmstudio/production.js` and `.lmstudio/entry.ts` **cannot be uploaded**. LM Studio generates those files when a user installs the plugin. The install bundler imports `src/index.ts`, so the release folder includes a minimal shim that re-exports `dist/index.js`.
 
 ### What gets pushed
 
-Controlled by `.lmsignore`:
+Controlled by `release/.lmsignore`:
 
 | Published | Excluded |
 |-----------|----------|
-| `manifest.json` | `src/` |
-| `package.json` | `scripts/` |
-| `README.md` | `tsconfig.json`, `README.dev.md` |
-| `dist/` (compiled JS) | `node_modules/` |
-| `.lmstudio/production.js` | |
-| `.lmstudio/entry.ts` | |
+| `manifest.json` | `scripts/` |
+| `package.json` (runtime deps only) | `tsconfig.json`, `README.dev.md` |
+| `README.md` | `node_modules/` |
+| `dist/` (compiled JS) | `.lmstudio/` |
+| `src/index.ts` (shim only) | full `src/` tree from dev repo |
 
 ### Build production bundle
 
@@ -110,7 +113,7 @@ Controlled by `.lmsignore`:
 npm run build:production
 ```
 
-This runs TypeScript compile, installs via `lms dev --install` (which bundles the plugin), and copies `production.js` back into `.lmstudio/`.
+This runs TypeScript compile, installs via `lms dev --install` (which bundles the plugin), and copies `production.js` back into `.lmstudio/` for local dev.
 
 ### Push to Hub
 
@@ -118,7 +121,16 @@ This runs TypeScript compile, installs via `lms dev --install` (which bundles th
 npm run push
 ```
 
-This builds a `release/` folder with compiled `dist/` only (no TypeScript source), then runs `lms push` from there.
+This builds a `release/` folder, then runs `lms push` from there.
+
+After `npm run build:release`, confirm these files exist in `release/`:
+
+```
+release/src/index.ts    ← re-exports dist/index.js
+release/dist/index.js
+```
+
+When `lms push` shows the upload file list, verify **`src/index.ts`** and **`dist/index.js`** are included. Do not expect `.lmstudio/` in the list — that is normal.
 
 To preview files first:
 

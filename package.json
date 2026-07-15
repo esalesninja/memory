@@ -1,6 +1,6 @@
 {
   "name": "lms-plugin-memory",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Persistent memory system for LM Studio. Stores global and per-chat facts in ~/.lmstudio/memories/, auto-injects them into every prompt, and provides tools to read, write, and remove line-based memories — with intelligent scope selection and unambiguous AI/User labels. https://github.com/esalesninja/memory",
   "main": "dist/index.js",
   "scripts": {
