@@ -8,7 +8,7 @@ Persistent memories for LM Studio chats. Save facts globally or per-conversation
 
 ## Install
 
-Install from [LM Studio Hub](https://lmstudio.ai/) (eas)
+Install from [LM Studio Hub](https://lmstudio.ai/) (easy)
 
 ```
 lms get esalesninja/memory
